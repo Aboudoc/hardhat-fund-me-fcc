@@ -4,7 +4,7 @@ const { developmentChains } = require("../../helper-hardhat-config")
 
 !developmentChains.includes(network.name)
     ? describe.skip
-    : describe("FundMe", async function () {
+    : describe("FundMe", function () {
           let fundMe
           let deployer
           let MockV3Aggregator
@@ -20,14 +20,14 @@ const { developmentChains } = require("../../helper-hardhat-config")
               )
           })
 
-          describe("constructor", async function () {
+          describe("constructor", function () {
               it("sets the aggregator addresses correctly", async function () {
                   const response = await fundMe.getPriceFeed()
                   assert.equal(response, MockV3Aggregator.address)
               })
           })
 
-          describe("fund", async function () {
+          describe("fund", function () {
               it("Fails if you don't send enough ETH", async () => {
                   await expect(fundMe.fund()).to.be.reverted
               })
@@ -44,12 +44,12 @@ const { developmentChains } = require("../../helper-hardhat-config")
                   assert.equal(funder, deployer)
               })
           })
-          describe("withdraw", async function () {
+          describe("withdraw", function () {
               beforeEach(async function () {
                   await fundMe.fund({ value: sendValue })
               })
 
-              it("withdraw ETH from a single founder", async function () {
+              it("withdraw ETH from a single funder", async function () {
                   // Arrange (setup)
                   const startingFundMeBalance =
                       await fundMe.provider.getBalance(fundMe.address)
@@ -75,7 +75,7 @@ const { developmentChains } = require("../../helper-hardhat-config")
                       endingDeployerBalance.add(gasCost).toString()
                   )
               })
-              it("withdraw ETH from a single founder", async function () {
+              it("cheaperWithdraw testing...", async function () {
                   // Arrange (setup)
                   const startingFundMeBalance =
                       await fundMe.provider.getBalance(fundMe.address)
