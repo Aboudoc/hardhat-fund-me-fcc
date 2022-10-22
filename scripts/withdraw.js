@@ -3,10 +3,13 @@ const { getNamedAccounts, ethers } = require("hardhat")
 async function main() {
     const { deployer } = await getNamedAccounts()
     const fundMe = await ethers.getContract("FundMe", deployer)
-    console.log("Withdrawing...")
+    console.log("Withdrawing, please wait...")
     const transactionResponse = await fundMe.withdraw()
     await transactionResponse.wait(1)
-    console.log("Got it back!")
+    console.log(`Withdrawn to this address: ${deployer}`)
+    console.log(
+        `Contract balance = ${await fundMe.provider.getBalance(fundMe.address)}`
+    )
 }
 
 main()
