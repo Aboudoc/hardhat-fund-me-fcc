@@ -18,7 +18,7 @@
 
 ```
 git clone https://github.com/Aboudoc/hardhat-fund-me-fcc
-cd hardhat-fund-me-fcc
+cd FCC-FundMeHH-1210
 yarn
 ```
 
